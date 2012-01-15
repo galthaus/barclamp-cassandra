@@ -1,0 +1,27 @@
+{
+  "id": "bc-template-cassandra",
+  "description": "common monitoring service for the cluster that can be used by other barclamps",
+  "attributes": {
+    "cassandra": {
+      "admin_ip_eval": "Chef::Recipe::Barclamp::Inventory.get_network_by_type(node, \"admin\").address",
+      "admin_interface_eval": "Chef::Recipe::Barclamp::Inventory.get_network_by_type(node, \"admin\").interface"
+    }
+  },
+  "deployment": {
+    "cassandra": {
+      "crowbar-revision": 0,
+      "elements": {},
+      "element_order": [
+        [ "cassandra-server" ]
+      ],
+      "config": {
+        "environment": "cassandra-base-config",
+        "mode": "full",
+        "transitions": false,
+        "transition_list": [
+        ]
+      }
+    }
+  }
+}
+
